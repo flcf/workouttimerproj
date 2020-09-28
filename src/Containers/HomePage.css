@@ -1,6 +1,9 @@
 .flex-container{
   display:flex;
   margin-top: 22%;
+  justify-content: space-between;
+  width: 1000px;
+
 
 
 

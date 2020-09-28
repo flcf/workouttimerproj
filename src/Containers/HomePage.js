@@ -17,10 +17,10 @@ function HomePage(){
       <Title info={ "Welcome Back"}/>
       <div className='flex-container'>
           <Link to={"/CreateWorkout"}>
-              <button type='button' className='  grow br3 bn-ns buttonStyle'>Create Workout</button>
+              <button type='button' className=' grow br3 bn-ns buttonStyle'>Create Workout</button>
           </Link>
           <Link to={"/SelectWorkout"}>
-              <button type='button' className='grow br3 bn-ns buttonStyle' > Select Workout</button>
+              <button type='button' className=' grow br3 bn-ns buttonStyle' > Select Workout</button>
           </Link>
 
       </div>
