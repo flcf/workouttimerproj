@@ -1,0 +1,12 @@
+.flex-box{
+    display: flex;
+    flex: 50%;
+    justify-content: center;
+
+
+
+}
+.item{
+   padding: 10px;
+}
+
