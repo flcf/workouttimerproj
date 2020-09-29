@@ -20,7 +20,7 @@ class StartWorkoutPage extends  React.Component{
                 <NavBar/>
                 <Title info={"Workout"}/>
                 <div className= 'container center' style={{position:'absolute', paddingTop: '2%', marginTop: '10%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: '60px'}}>
-                <Countdown duration={30}/>
+                    <Countdown date="November 25 2023 12:44 GMT+2" />
                 </div>
             </div>
 
