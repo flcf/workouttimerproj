@@ -7,8 +7,8 @@ export const workoutData = [
             {
                 exerciseId: '1',
                 exerciseName: 'Benchpress',
-                duration: 45,
-                restInterval: 15
+                duration: 5,
+                restInterval: 3
 
             },
             {
@@ -51,15 +51,15 @@ export const workoutData = [
             {
             exerciseId: '1',
             exerciseName: 'Benchpress',
-            duration: 45,
-            restInterval: 15
+            duration: 5,
+            restInterval: 2
 
             },
             {
                 exerciseId: '2',
                 exerciseName: 'Plank',
-                duration: 30,
-                restInterval: 20
+                duration: 20,
+                restInterval: 5
 
             },
             {

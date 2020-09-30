@@ -3,8 +3,7 @@ import WorkoutCard from "../Components/WorkoutCard";
 import React from "react";
 import NavBar from "../Components/NavBar";
 import {withRouter} from "react-router-dom";
-import '../Components/RadialTimer/TimerStyle.scss'
-import Countdown from "../Components/RadialTimer/Countdown";
+import Timer from "../Components/Timer"
 class StartWorkoutPage extends  React.Component{
 
 
@@ -13,6 +12,8 @@ class StartWorkoutPage extends  React.Component{
         const passedObject = this.props.location.state.exerciseList;
         console.log( 'starting with ' + passedObject[0].exerciseName);
 
+
+
         return(
 
 
@@ -20,7 +21,7 @@ class StartWorkoutPage extends  React.Component{
                 <NavBar/>
                 <Title info={"Workout"}/>
                 <div className= 'container center' style={{position:'absolute', paddingTop: '2%', marginTop: '10%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: '60px'}}>
-                    <Countdown date="November 25 2023 12:44 GMT+2" />
+                    <Timer exerciseList={passedObject}/>
                 </div>
             </div>
 

@@ -15,7 +15,7 @@ function HomePage(){
           <NavButtons info={"Logout"}/>
       </Link>
       <Title info={ "Welcome Back"}/>
-      <div className='flex-container'>
+      <div className='flex-container center'>
           <Link to={"/CreateWorkout"}>
               <button type='button' className=' grow br3 bn-ns buttonStyle'>Create Workout</button>
           </Link>
