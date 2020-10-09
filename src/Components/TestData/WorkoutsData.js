@@ -14,31 +14,18 @@ export const workoutData = [
             {
                 exerciseId: '2',
                 exerciseName: 'Plank',
-                duration: 30,
-                restInterval: 20
+                duration: 4,
+                restInterval: 2
 
             },
             {
                 exerciseId: '3',
                 exerciseName: 'Squats',
-                duration: 45,
-                restInterval: 15
-
-            },
-            {
-                exerciseId: '4',
-                exerciseName: 'Side Plank',
-                duration: 30,
-                restInterval: 15
-
-            },
-            {
-                exerciseId: '3',
-                exerciseName: 'Squats',
-                duration: 45,
-                restInterval: 15
+                duration: 7,
+                restInterval: 1
 
             }
+
 
 
         ]

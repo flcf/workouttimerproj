@@ -24,7 +24,9 @@ class WorkoutDetails extends  React.Component{
                 <InfoBox info={passedObject}/>
                 <Link to={{
                     pathname: '/StartWorkout',
-                    state: {exerciseList: passedObject.exercises}
+                    state: {exerciseList: passedObject.exercises,
+                            workoutName: passedObject.workoutName
+                    }
                 }}>
 
                     <button className='grow white b pv2-l ph4 bn-ns br3 pa2  bg-green hover-bg-dark-green bn-l br5'>Start</button>
