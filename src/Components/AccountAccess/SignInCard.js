@@ -12,7 +12,7 @@ const SignInCard =()=> {
             <Title info={"Sign In"}/>
             <article className="br2 ph2 ba dark-gray b--black-10 mv4 w-150 w-50-m w-25-l mw5 center">
                 <main className="pa4 black-80">
-                    <form className="measure center">
+                    <form className="measure center" id="login-form" method="POST" action="/signin">
                         <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
 
                             <div className="mt3">
