@@ -19,7 +19,7 @@ const NavBar=()=>{
                     <NavButtons info={"Home"}/>
                 </Link>
 
-                <Link  className='item' to={"/LoginOption"} style={{textDecoration:'none'}} >
+                <Link  className='item' to={"/SignIn"} style={{textDecoration:'none'}} >
                     <NavButtons info={"Logout"}/>
                 </Link>
 

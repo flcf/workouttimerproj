@@ -16,8 +16,8 @@ return(
   <div>
     <NavBar/>
     <Title info={"Select Workout"}/>
-    <div className='center'>
-        <Scrollbar style={{width:700, height: 500, position:'absolute', marginTop: "12%", left: '50%', transform: 'translate(-50%, -50%)'}}>
+
+        <Scrollbar style={{width:700, height: 500, position:'absolute', marginTop: "15%", left: '50%', transform: 'translate(-50%, -50%)'}}>
 
             <MyContext.Consumer>
                 {(passedValue)=>(
@@ -51,7 +51,7 @@ return(
         </Scrollbar>
 
 
-    </div>
+
   </div>
 
 )

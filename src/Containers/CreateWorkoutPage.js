@@ -40,7 +40,7 @@ const CreateWorkoutPage=()=>{
         });
 
         document.getElementById('addWorkout').reset();
-
+        // a callback that helps us immediately get the values of the setState!
         setExerciseInfo((state) => {
             console.log("Current Set State values are " + state.exerciseName);
 
@@ -61,9 +61,6 @@ const CreateWorkoutPage=()=>{
 
 
         }
-
-
-
 
 
 
