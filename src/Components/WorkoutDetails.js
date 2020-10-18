@@ -1,43 +1,82 @@
-import React from "react";
+import React, {useContext, useEffect, useState} from "react";
 import NavButtons from "./NavButtons";
 import InfoBox from "./InfoBox";
 import {Link} from "react-router-dom";
 import {withRouter} from "react-router-dom"
 import Title from "./Title";
+import {WorkoutContext} from "../REACT Context/WorkoutContext";
+
+const WorkoutDetails = (props)=>{
 
 
-class WorkoutDetails extends  React.Component{
-
-    render(){
-
-            const passedObject = this.props.location.state.fromSelect;
-            console.log( 'this is ' + passedObject.workoutName);
+    const {exerciseList, setExerciseList} = useContext(WorkoutContext);
+    const [workoutName, setWorkoutName] = useState(null)
 
 
+    function handleBack(){
+        setExerciseList([]);
+    }
 
-        return(
-            <div>
-                <Link to={'/SelectWorkout'}  style={{textDecoration:'none'}}>
-                    <NavButtons info={"Back"} />
-                </Link>
-                <Title info = {passedObject.workoutName}/>
-                <InfoBox info={passedObject}/>
+
+    function renderData(){
+        if(exerciseList.length > 0){
+            return <div>
+
+                <InfoBox/>
                 <Link to={{
                     pathname: '/StartWorkout',
-                    state: {exerciseList: passedObject.exercises,
-                            workoutName: passedObject.workoutName
+                    state: {
+                        workoutName: workoutName
                     }
                 }}>
 
                     <button className='grow white b pv2-l ph4 bn-ns br3 pa2  bg-green hover-bg-dark-green bn-l br5'>Start</button>
                 </Link>
             </div>
+        }
 
+
+    }
+
+    useEffect(()=>{
+
+        if(exerciseList.length === 0) {
+            fetch('http://localhost:5000/WorkoutDetails', {
+                method: 'post',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    workoutid: props.location.state.fromSelect.workoutID
+
+                })
+            }).then(response => response.json()).then(data => {
+
+
+                setExerciseList(data);
+                setWorkoutName(data[0].workoutname)
+
+
+            })
+        }
+
+    },[exerciseList])
+
+    return(
+        <div>
+            <Link to={'/SelectWorkout'} onClick={() => handleBack()}  style={{textDecoration:'none'}}>
+                <NavButtons info={"Back"} />
+            </Link>
+
+            <Title info = {workoutName}/>
+            {renderData()}
+
+
+        </div>
 
 
 
     )
-    }
+
+
 
 }
 

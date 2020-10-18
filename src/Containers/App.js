@@ -13,12 +13,15 @@ import SignInCard from "../Components/AccountAccess/SignInCard"
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import MyProvider from "../REACT Context/Provider"
 import {UserContext} from "../REACT Context/UserContext";
+import {WorkoutContext} from "../REACT Context/WorkoutContext";
 
 function App () {
 
     const [userid, setUserid] = useState(null);
-
     const providerValue = useMemo(()=> ({userid, setUserid}), [userid, setUserid]);
+
+    const [exerciseList, setExerciseList] = useState([]);
+    const wProvider = useMemo(()=>({exerciseList, setExerciseList}), [exerciseList, setExerciseList]);
 
 
 
@@ -28,7 +31,8 @@ function App () {
 
   return(
     <UserContext.Provider value={providerValue}>
-    <MyProvider>
+
+    <WorkoutContext.Provider value={wProvider}>
         <Router>
             <TransitionGroup>
                 <CSSTransition className='fade' timeout={600}>
@@ -50,7 +54,7 @@ function App () {
 
 
         </Router>
-    </MyProvider>
+    </WorkoutContext.Provider>
     </UserContext.Provider>
 
   );

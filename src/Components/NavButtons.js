@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, {useContext} from 'react';
 
 const style={
     //why is this just const without arrow functions
@@ -11,6 +10,11 @@ const style={
 };
 
 const NavButtons =(prop)=> {
+
+
+    //should have setContext go back to null;
+
+
 
     return(
         <h3 style={style}>{prop.info}</h3>

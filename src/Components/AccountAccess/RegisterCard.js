@@ -1,6 +1,7 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import Title from "../Title";
 import {Link, useHistory} from "react-router-dom";
+import {UserContext} from "../../REACT Context/UserContext";
 
 
 
@@ -17,7 +18,7 @@ const RegisterCard =()=> {
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
 
-
+    const {userid, setUserid} = useContext(UserContext);
 
 
     function handleSubmitClick(e){
@@ -57,6 +58,10 @@ const RegisterCard =()=> {
         }).then(response=>response.json()).then( data => {
 
             if (data[0].username === registerInfo.username) {
+                console.log(userid);
+
+                setUserid(data[0].userid)
+
                 return history.push("/")
             } else {
                 return alert(data)

@@ -1,15 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
 import './InfoBox.css'
 import Title from "./Title";
 import {Link} from "react-router-dom";
+import {WorkoutContext} from "../REACT Context/WorkoutContext";
 
 
 
-const InfoBox =(prop)=> {
- let passedInfo= prop.info.exercises;
+const InfoBox =()=> {
+ //let passedInfo= prop.info.exercises;
  let mappedInfo= []
-
-    console.log("what is" + passedInfo.workoutName)
+    const {exerciseList, setExerciseList} = useContext(WorkoutContext);
     return(
         <div>
             <div className='cardStyle center bn-ns br3'>
@@ -19,11 +19,11 @@ const InfoBox =(prop)=> {
                         <th> Duration</th>
                         <th> Rest Interval</th>
                     </tr>
-                    {mappedInfo= passedInfo.map((user, i) =>{
+                    {mappedInfo= exerciseList.map((user, i) =>{
                         return <tr style={{fontSize:'20px'}}>
-                            <td>{passedInfo[i].exerciseName}</td>
-                            <td>{passedInfo[i].duration}</td>
-                            <td>{passedInfo[i].restInterval}</td>
+                            <td>{exerciseList[i].exerciseName}</td>
+                            <td>{exerciseList[i].duration}</td>
+                            <td>{exerciseList[i].restInterval}</td>
 
 
                         </tr>
@@ -43,7 +43,7 @@ const InfoBox =(prop)=> {
 
 
         </div>
-    )
+    );
 
 };
 
