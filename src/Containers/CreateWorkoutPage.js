@@ -1,27 +1,33 @@
 import Title from "../Components/Title";
-import React, { useState, useEffect, useRef } from 'react';
+import React, {useState, useEffect, useRef, useContext} from 'react';
 import NavButtons from "../Components/NavButtons";
 import {Link} from "react-router-dom";
 import NavBar from "../Components/NavBar";
 import '../Components/OptionCard.css'
 import CreateWorkoutBox from "../Components/CreateWorkoutBox";
 import "./CreateWorkout.css"
+import {UserContext} from "../REACT Context/UserContext";
+import {WorkoutContext} from "../REACT Context/WorkoutContext";
 
 
 const CreateWorkoutPage=()=>{
+    const {userid, setUserid} = useContext(UserContext);
+    const {exerciseList, setExerciseList} = useContext(WorkoutContext);
     const[isWorkoutEntered, setEntered] = useState(false);
     const[isSaved, setSaved] = useState(false);
     const[workoutName, setWorkoutName] = useState("");
     const [exerciseInfo, setExerciseInfo] = useState( { exerciseName: '',
                                                                     duration: null,
                                                                     restInterval: null });
-    const [exerciseList, setExerciseList] = useState([] );
+    const [tempExerciseList, setTempExerciseList] = useState([] );
+
+    const [updatedList, setUpdatedList] = useState([]);
 
     const eNameRef = useRef(null);
     const durationRef = useRef(null);
     const restRef = useRef(null);
 
-
+    //console.log("userid value= " + userid);
 
     function handleCreateClick(e) {
         setEntered(true);
@@ -42,7 +48,7 @@ const CreateWorkoutPage=()=>{
         document.getElementById('addWorkout').reset();
         // a callback that helps us immediately get the values of the setState!
         setExerciseInfo((state) => {
-            console.log("Current Set State values are " + state.exerciseName);
+           // console.log("Current Set State values are " + state.exerciseName);
 
             return state;
         });
@@ -51,13 +57,93 @@ const CreateWorkoutPage=()=>{
 
     }
 
+    function handleSaveClick(){
+        //store into server List of Values!
+        //store into table Workout AND table Exercise
+
+       /* console.log("HandleSave ran once")
+        console.log("Handle save userid= " + userid)*/
+
+        fetch('http://localhost:5000/CreateWorkout', {
+            method: 'post',
+            headers:{'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                workoutname: workoutName,
+                userid: userid,
+                exercises: tempExerciseList
+
+                }
+
+            )
+        }).then(response=>response.json()).then(data=>{
+
+            if(data === 'Success'){
+                return setSaved(true);
+            } else {
+                return <p className='b'>Error. Return to Home</p>
+            }
+
+
+        })
+
+    }
+
+    function handleStartClick(){
+        //setContext to those values, Link to Timer
+        setExerciseList(tempExerciseList);
+
+
+
+    }
+
+
+    function handleCallback(deleteClicked){
+
+            console.log("Returned " + deleteClicked)
+
+            const newList = tempExerciseList;
+            newList.splice(deleteClicked, 1)
+
+
+            setUpdatedList(newList);
+            newList.splice(deleteClicked, 1)
+            console.log("New List: ")
+            console.log(newList);
+
+
+
+
+
+
+
+
+    }
+
+
+    useEffect(()=>{
+
+        setTempExerciseList(updatedList);
+
+
+
+    }, [updatedList])
+
+
+      //problems : handleDelete only deletes once. Everything only re-rendered once...
+     // when clickDelete again, will pass nex inde
+    //for some reason, rendering only the DELETED VALUE... even tho that wasn't stored anywhere....
+
+
+
+
+
     //decided to do useEffect here when setExerciseList updates because it would re-render EVERY SINGLE time any of the states changed.
     //under this, it will limit when this happens..., allowing for a case where it setExercistList won't append the initial "null" state of exerciseInfo...
 
     useEffect(()=>{
 
         if (exerciseInfo.restInterval != null) {
-            setExerciseList([...exerciseList, exerciseInfo]);
+            setTempExerciseList([...tempExerciseList, exerciseInfo]);
 
 
         }
@@ -69,14 +155,22 @@ const CreateWorkoutPage=()=>{
 
     function renderExerciseList (){
 
-        if( exerciseList.length > 0) {
+
+        //for some reason, not replacing render.
+
+        if( tempExerciseList.length > 0) {
+            console.log("The ExerciseList that is being rendered")
+            console.log(tempExerciseList);
             return <div>
-                <CreateWorkoutBox exerciseList={exerciseList}/>
+                <CreateWorkoutBox exerciseList={tempExerciseList} deleteCallback={handleCallback} />
                 {renderPreview()}
+                {console.log("Reached end of exerciseList render")}
                 </div>
 
 
 
+        } else{
+            {renderPreview()}
         }
     }
 
@@ -84,7 +178,7 @@ const CreateWorkoutPage=()=>{
     function renderPreview(){ //need to add a condition so the save button doesn't show up until WorkoutBox is populated...for future design!
         if (isSaved === false ) {
             return <div>
-                <button onClick={handleSaveClick} className='grow white b pv2-l ph4 bn-ns  bg-red hover-bg-dark-red bn-l br3 pa2 ' >Save</button>
+                <button onClick={handleSaveClick} className='grow white b pv2-l ph4 bn-ns  bg-red hover-bg-dark-red bn-l br3 pa2' >Save</button>
 
 
             </div>
@@ -92,20 +186,19 @@ const CreateWorkoutPage=()=>{
             return <div>
                 <p className='b'>Saved</p>
 
-                <Link to={"/StartWorkout"}>
-                    <button className='grow white b pv2-l ph4 bn-ns br3 pa2  bg-green hover-bg-dark-green bn-l br5'>Start</button>
+
+                <Link to={{
+                    pathname: '/StartWorkout',
+                    state: {
+                        workoutName: workoutName
+                    }
+                }}>
+
+                    <button onClick={(e)=>{handleStartClick(e)}} className='grow white b pv2-l ph4 bn-ns br3 pa2  bg-green hover-bg-dark-green bn-l br5'>Start</button>
                 </Link>
             </div>
         }
     }
-
-
-    function handleSaveClick(){
-        setSaved(true);
-    }
-
-
-
 
 
 
@@ -144,7 +237,6 @@ const CreateWorkoutPage=()=>{
 
                 </form>
 
-                {console.log("Current Value in ExerciseInfo " + exerciseInfo.exerciseName)}
                 {renderExerciseList()}
 
 
