@@ -41,7 +41,7 @@ const WorkoutDetails = (props)=>{
     useEffect(()=>{
 
         if(exerciseList.length === 0) {
-            fetch('http://localhost:5000/WorkoutDetails', {
+            fetch('https://frozen-ravine-88940.herokuapp.com/WorkoutDetails', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({

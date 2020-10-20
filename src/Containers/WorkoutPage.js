@@ -23,7 +23,7 @@ const WorkoutPage=()=>{
 
 
         if(workoutList.length === 0) {  //set this condition to prevent useEffect from triggering after every re-render!!
-            fetch('http://localhost:5000/SelectWorkout', {
+            fetch('https://frozen-ravine-88940.herokuapp.com/SelectWorkout', {
                 method: 'post',
                 headers:{'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -49,8 +49,6 @@ const WorkoutPage=()=>{
 
         if(workoutList.length > 0){
             return <div>
-                <NavBar/>
-                <Title info={"Select Workout"}/>
 
                 <Scrollbar style={{width:700, height: 500, position:'absolute', marginTop: "15%", left: '50%', transform: 'translate(-50%, -50%)'}}>
 
@@ -90,6 +88,8 @@ const WorkoutPage=()=>{
 return(
 
   <div>
+      <NavBar/>
+      <Title info={"Select Workout"}/>
       {renderData()}
 
   </div>

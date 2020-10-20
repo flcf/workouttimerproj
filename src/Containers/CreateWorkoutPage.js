@@ -65,7 +65,7 @@ const CreateWorkoutPage=()=>{
        /* console.log("HandleSave ran once")
         console.log("Handle save userid= " + userid)*/
 
-        fetch('http://localhost:5000/CreateWorkout', {
+        fetch('https://frozen-ravine-88940.herokuapp.com/CreateWorkout', {
             method: 'post',
             headers:{'Content-Type': 'application/json'},
             body: JSON.stringify({

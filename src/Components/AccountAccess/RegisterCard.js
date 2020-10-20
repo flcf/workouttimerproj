@@ -46,7 +46,7 @@ const RegisterCard =()=> {
     });
 
     function fetchFromServer() {
-        fetch('http://localhost:5000/register', {
+        fetch('https://frozen-ravine-88940.herokuapp.com/register', {
             method: 'post',
             headers:{'Content-Type': 'application/json'},
             body: JSON.stringify({
