@@ -101,7 +101,7 @@ const RegisterCard =()=> {
                                 <button form="register-form" className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                                         type="submit">Register</button>
                             </div>
-                            <Link to="/SignIn"  style={{textDecoration:'none'}}>
+                            <Link to="/"  style={{textDecoration:'none'}}>
                                 <p className="dark-gray f6 hover-black">Sign In</p>
                             </Link>
 

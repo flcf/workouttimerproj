@@ -31,7 +31,7 @@ const NavBar=()=>{
                     <NavButtons info={"Home"}/>
                 </Link>
 
-                <Link  className='item' to={"/SignIn"}  onClick={() => handleSignOut()} style={{textDecoration:'none'}} >
+                <Link  className='item' to={"/"}  onClick={() => handleSignOut()} style={{textDecoration:'none'}} >
                     <NavButtons info={"Logout"}/>
                 </Link>
 

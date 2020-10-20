@@ -11,7 +11,7 @@ function HomePage(){
   return(
 
     <div>
-      <Link to={"/SignIn"} style={{textDecoration:'none'}} >
+      <Link to={"/"} style={{textDecoration:'none'}} >
           <NavButtons info={"Logout"}/>
       </Link>
       <Title info={ "Welcome Back"}/>

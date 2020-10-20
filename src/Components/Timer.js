@@ -15,6 +15,7 @@ const Timer = (props) => {
     const [currentExercise, setExercise] = useState(0);
     const [secondsLeft, setSeconds] = useState(props.exerciseList[currentExercise].duration);
     const [exerciseName, setExerciseName] = useState(props.exerciseList[currentExercise].exerciseName);
+    const [nextExercise, setNextExercise] = useState(props.exerciseList[1].exerciseName);
     const [isActive, setIsActive] = useState(true);
     const  [isResting, setRest] = useState( false);
     const [isFinished, setFinished] = useState(false);
@@ -54,10 +55,15 @@ If list is not exhausted, will display the time left + name of the exercise/rest
                 <p className='b white f1-l'> {exerciseName}</p>
                 <p>{secondsLeft}s</p>
                 <div>
+                    <b className='b white f3-m'>Next: </b>
+                    <b className='b white f3-m'>{nextExercise}</b>
+                </div>
+
+                <div>
                     <button style={{margin: '10px'}} className='grow white b pv2-l ph4 bn-ns  bg-red hover-bg-dark-red bn-l br3 pa2 ' onClick={toggle}>
                         {isActive ? 'Pause' : 'Start'}
                     </button>
-                    <Link to={"/"}>
+                    <Link to={"/Home"}>
                         <button style={{margin: '10px'}} className='grow white b pv2-l ph4 bn-ns br3 pa2  bg-green hover-bg-dark-green bn-l br5'>End</button>
                     </Link>
 
@@ -116,6 +122,11 @@ If list is not exhausted, will display the time left + name of the exercise/rest
             if (props.exerciseList[currentExercise+1] !== undefined){
                 setExercise(  currentExercise + 1);
                 setExerciseName(props.exerciseList[currentExercise +1].exerciseName);
+                if (props.exerciseList[currentExercise + 2] !== undefined){
+                    setNextExercise(props.exerciseList[currentExercise +2].exerciseName)
+                } else{
+                    setNextExercise(null)
+                }
                 setSeconds(props.exerciseList[currentExercise +1].duration);
                 setRest(false);
                 playNext();
