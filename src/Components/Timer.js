@@ -43,7 +43,7 @@ If list is not exhausted, will display the time left + name of the exercise/rest
                         </button>
                     </Link>
 
-                    <Link to={"/"}>
+                    <Link to={"/Home"}>
                         <button style={{margin: '10px'}} className='grow white b pv2-l ph4 bn-ns br3 pa2  bg-green hover-bg-dark-green bn-l br5'>End</button>
                     </Link>
                 </div>

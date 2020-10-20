@@ -63,7 +63,7 @@ const BufferTime =(props) =>{
             <button style={{margin: '10px'}} className='grow white b pv2-l ph4 bn-ns  bg-red hover-bg-dark-red bn-l br3 pa2 ' onClick={toggle}>
                 {isActive ? 'Pause' : 'Start'}
             </button>
-            <Link to={"/"}>
+            <Link to={"/Home"}>
                 <button style={{margin: '10px'}} className='grow white b pv2-l ph4 bn-ns br3 pa2  bg-green hover-bg-dark-green bn-l br5'>End</button>
             </Link>
 
