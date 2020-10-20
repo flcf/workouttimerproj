@@ -39,7 +39,7 @@ const BufferTime =(props) =>{
 
             clearInterval(interval);
             setFinished(true);
-            
+
 
         }
 

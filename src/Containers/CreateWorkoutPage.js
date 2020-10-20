@@ -22,6 +22,7 @@ const CreateWorkoutPage=()=>{
     const [tempExerciseList, setTempExerciseList] = useState([] );
 
     const [updatedList, setUpdatedList] = useState([]);
+    const [deleteHelper, setDeleteHelper] = useState([]);
 
     const eNameRef = useRef(null);
     const durationRef = useRef(null);
@@ -96,22 +97,31 @@ const CreateWorkoutPage=()=>{
 
     }
 
-
     function handleCallback(deleteClicked){
 
-            console.log("Returned " + deleteClicked)
 
+            console.log(updatedList)
             const newList = tempExerciseList;
             newList.splice(deleteClicked, 1)
-
+            console.log("Before Updating's List value: ")
+            //problem seems to be the fact that after deleting first item, updatedList ALREADY populates with new value before setUpdated List is called... Hence no changes therefore not triggering useEffect...
 
             setUpdatedList(newList);
-            newList.splice(deleteClicked, 1)
-            console.log("New List: ")
-            console.log(newList);
+
+            setUpdatedList((state) => {
+                 console.log("Current Set Updated List values are " );
+                 console.log(state);
+
+
+                return state;
+            });
+            setDeleteHelper(deleteHelper => [...deleteHelper, 1]);
 
 
 
+
+            console.log("Temp List Value: ")
+            console.log(tempExerciseList);
 
 
 
@@ -119,6 +129,8 @@ const CreateWorkoutPage=()=>{
 
     }
 
+    //handleDelete called but after that, nothing happens bc useEffect for updatedList is not called
+    //added deleteHelper that useEffect will listen for. For some reason, even though updatedList's value changes, useEffect not called...
 
     useEffect(()=>{
 
@@ -126,19 +138,14 @@ const CreateWorkoutPage=()=>{
 
 
 
-    }, [updatedList])
-
-
-      //problems : handleDelete only deletes once. Everything only re-rendered once...
-     // when clickDelete again, will pass nex inde
-    //for some reason, rendering only the DELETED VALUE... even tho that wasn't stored anywhere....
+    }, [updatedList, deleteHelper])
 
 
 
 
 
     //decided to do useEffect here when setExerciseList updates because it would re-render EVERY SINGLE time any of the states changed.
-    //under this, it will limit when this happens..., allowing for a case where it setExercistList won't append the initial "null" state of exerciseInfo...
+    //under this, it will limit when this happens, allowing for a case where it setExercistList won't append the initial "null" state of exerciseInfo
 
     useEffect(()=>{
 
@@ -154,10 +161,12 @@ const CreateWorkoutPage=()=>{
     }, [exerciseInfo] );
 
     function renderExerciseList (){
+        console.log("render Exercise List called")
 
 
-        //for some reason, not replacing render.
 
+        //not executing this when tempExerciesList length is 0... (but should remove thise all together??)
+        //this condition passed even though length already 0...
         if( tempExerciseList.length > 0) {
             console.log("The ExerciseList that is being rendered")
             console.log(tempExerciseList);
@@ -170,6 +179,7 @@ const CreateWorkoutPage=()=>{
 
 
         } else{
+            {console.log("only Render preview ran")}
             {renderPreview()}
         }
     }
@@ -222,6 +232,7 @@ const CreateWorkoutPage=()=>{
                   </div>
         }
         else {
+            console.log("AddWorkout RenderData is Called")
             return <div>
 
                 <form id="addWorkout" onSubmit={(e)=>{handleAddClick(e)}} >
@@ -268,14 +279,3 @@ const CreateWorkoutPage=()=>{
 } ;
 export default CreateWorkoutPage;
 
-//NOTES
-//TODO: Create PassedInfo. <-- problem looks like the component needs to be re-rendered... always just passing undefined...
-//TODO: use User POST to write to JSON file !! <-- write to temp file....
-//TODO: random workout ID <-- but want to NEVER REPEAT... HOW?
-//Issue, rerenders 6 times...
-
-//by default, react with re-render every time
-//for onSubmit to work, need to put it on the form!
-//In React, you MUST store your inputs using onCHANGE!
-
-//NOT SURE what e is! for addOnclick! Why wasn't this an issue for Workoutname...

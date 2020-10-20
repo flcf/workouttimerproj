@@ -10,7 +10,7 @@ const CreateWorkoutBox = (prop) =>{
     let mappedInfo= [];
 
     console.log("passedInfo Values ");
-    console.log(passedInfo);
+    console.log(Object.keys(passedInfo).length );
 
     //for some reason, child is not running and passing prop...
 
@@ -21,11 +21,9 @@ const CreateWorkoutBox = (prop) =>{
 
     }
 
-
-
-    return( <div>
-            {console.log("Does Table work? Yes")}
-            <div className='cardStyle center bn-ns br3'>
+    function handleRender() {
+        if(Object.keys(passedInfo).length > 0 ){
+            return  <div className='cardStyle center bn-ns br3'>
                 <table style={{marginRight:'auto', marginLeft:'auto'}}>
                     <tr>
                         <th> Exercise Name</th>
@@ -52,8 +50,6 @@ const CreateWorkoutBox = (prop) =>{
 
 
 
-
-
                 </table>
 
 
@@ -61,6 +57,15 @@ const CreateWorkoutBox = (prop) =>{
             </div>
 
 
+        } else {
+            return console.log("No Values in Exercise List")
+        }
+    }
+
+
+
+    return( <div>
+            {handleRender()}
         </div>
     )
 
