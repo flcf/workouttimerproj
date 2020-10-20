@@ -11,7 +11,6 @@ import HomePage from "./HomePage";
 import RegisterCard from "../Components/AccountAccess/RegisterCard"
 import SignInCard from "../Components/AccountAccess/SignInCard"
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import MyProvider from "../REACT Context/Provider"
 import {UserContext} from "../REACT Context/UserContext";
 import {WorkoutContext} from "../REACT Context/WorkoutContext";
 
