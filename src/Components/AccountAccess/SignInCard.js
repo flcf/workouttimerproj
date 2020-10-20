@@ -70,7 +70,7 @@ const SignInCard =()=> {
                 setUserid(data.userid);
 
 
-                return history.push("/" )
+                return history.push("/Home" )
             } else {
                 return alert("Incorrect Login Information. Try Again")
             }

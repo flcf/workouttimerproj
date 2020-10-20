@@ -27,7 +27,7 @@ const NavBar=()=>{
             <nav className='flex-box'>
 
                 <Link className='item'
-                     to={"/"} style={{textDecoration:'none'}} >
+                     to={"/Home"} style={{textDecoration:'none'}} >
                     <NavButtons info={"Home"}/>
                 </Link>
 

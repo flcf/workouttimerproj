@@ -62,7 +62,7 @@ const RegisterCard =()=> {
 
                 setUserid(data[0].userid)
 
-                return history.push("/")
+                return history.push("/Home")
             } else {
                 return alert(data)
             }

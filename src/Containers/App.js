@@ -38,13 +38,13 @@ function App () {
                 <CSSTransition className='fade' timeout={600}>
                     <div className="App">
                         <Switch>
-                            <Route path = "/" exact component={HomePage}/>
+                            <Route path ="/" exact component={SignInCard}/>
+                            <Route path = "/Home" exact component={HomePage}/>
                             <Route path ="/SelectWorkout/" component ={WorkoutPage} />
                             <Route path = "/CreateWorkout/" component={CreateWorkoutPage}/>
                             <Route path = "/LoginOption" component={LoginPage}/>
                             <Route path ="/StartWorkout/" component={StartWorkoutPage}/>
                             <Route path ="/Register" component={RegisterCard}/>
-                            <Route path ="/SignIn" component={SignInCard}/>
                             <Route path ="/WorkoutDetails" component={WorkoutDetails}/>
 
                         </Switch>
