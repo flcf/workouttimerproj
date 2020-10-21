@@ -12,7 +12,7 @@ import {Link} from "react-router-dom";
 const BufferTime =(props) =>{
     const [playShort] = useSound(shortBeep);
     const [playStart] = useSound(Start);
-    const [secondsLeft, setSeconds] = useState(3);
+    const [secondsLeft, setSeconds] = useState(5);
     const [isFinished, setFinished] = useState(false);
     const [isActive, setIsActive] = useState(true);
 
