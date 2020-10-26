@@ -168,18 +168,16 @@ const CreateWorkoutPage=()=>{
         //not executing this when tempExerciesList length is 0... (but should remove thise all together??)
         //this condition passed even though length already 0...
         if( tempExerciseList.length > 0) {
-            console.log("The ExerciseList that is being rendered")
-            console.log(tempExerciseList);
+
             return <div>
                 <CreateWorkoutBox exerciseList={tempExerciseList} deleteCallback={handleCallback} />
                 {renderPreview()}
-                {console.log("Reached end of exerciseList render")}
+
                 </div>
 
 
 
         } else{
-            {console.log("only Render preview ran")}
             {renderPreview()}
         }
     }
@@ -240,9 +238,9 @@ const CreateWorkoutPage=()=>{
                     <input type="text" placeholder="Exercise Name" className="pa3 input-reset ba br3 bg-transparent ma3 hover-white "
                             name="exerciseName" id="exerciseName" ref={eNameRef} />
 
-                    <input type="number" placeholder="Duration" className="pa3 input-reset ba br3 bg-transparent ma3 hover-white"
+                    <input type="number" min="0" placeholder="Duration (s)" className="pa3 input-reset ba br3 bg-transparent ma3 hover-white"
                             name="duration" id="duration" ref={durationRef} />
-                    <input type="number" placeholder="Rest for" className="pa3 input-reset ba br3 bg-transparent ma3 hover-white"
+                    <input type="number" min="0" placeholder="Rest for (s)" className="pa3 input-reset ba br3 bg-transparent ma3 hover-white"
                            ref={restRef}    />
                     <button form="addWorkout"  className=' white b bn-ns br3  bg-light-purple hover-bg-dark-blue addButton' >Add</button>
 
