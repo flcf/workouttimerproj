@@ -40,12 +40,13 @@ const RegisterCard =()=> {
 
     useEffect(()=>{
         //will only run if the loginInfo values have been updated from their initial state!
-        if (registerInfo.username != '') {
+
             fetchFromServer();
-        }
-    });
+
+    } ,[registerInfo]);
 
     function fetchFromServer() {
+        console.log("fetch is running")
         fetch('https://frozen-ravine-88940.herokuapp.com/register', {
             method: 'post',
             headers:{'Content-Type': 'application/json'},
