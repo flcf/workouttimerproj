@@ -17,7 +17,7 @@ Front-End:
 - Javascript
 - CSS/HTML
 
-Back-End
+Back-End:
 - POSTGRESQL
 - Postman
 - Heroku 
