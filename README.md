@@ -1,9 +1,12 @@
 ## FUNCTIONALITY
 
 This Exercise webapp allows the user to 
--create an account
--create new workouts (can specify what exercises to add) and store it in a database so when the use logs in again, the data can be retrieved
--will show a countdown timer indicating how many seconds left in the exercise and what the next exercise will be
+- create an account
+- create new workouts 
+- create exercises to add to workouts
+- set exercise duration and rest time
+- show a countdown timer indicating how many seconds left in the exercise and what the next exercise will be
+- user account data will be stored in a database
 
 
 
